@@ -3,10 +3,10 @@ import { APT_URL } from './config.js';
 import { getJSON } from './helpers.js';
 export const state = {
   recipe: {},
-  search:{
+  search: {
     query: '',
-    results:[],
-  }
+    results: [],
+  },
 };
 export const loadRecipe = async function (id) {
   try {
@@ -22,7 +22,6 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log(state.recipe);
   } catch (err) {
     // temp error handling
     console.error(`${err}...`);
@@ -32,7 +31,7 @@ export const loadRecipe = async function (id) {
 
 export const loadSearchResults = async function (query) {
   try {
-    state.search.query =query;
+    state.search.query = query;
     const data = await getJSON(`${APT_URL}?search=${query}`);
     console.log(data);
     state.search.results = data.data.recipes.map(rec => {
